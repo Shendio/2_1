@@ -15,14 +15,12 @@
   })
 
   cw1.addEventListener("click", function () {
+    const id = document.getElementById('postId').value
     answer.textContent = "Loading…"
-    fetch('https://jsonplaceholder.typicode.com/posts', { method: 'GET' })
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { method: 'GET' })
       .then(response => response.json())
-      .then(posts => {
-        const items = posts.map(post =>
-          `<li><strong>${post.title}</strong><br>${post.body}</li>`
-        )
-        answer.innerHTML = `<ul>${items.join('')}</ul>`
+      .then(post => {
+        answer.innerHTML = `<h3>${post.title}</h3><p>${post.body}</p>`
       })
   })
 
